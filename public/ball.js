@@ -33,7 +33,7 @@ var setup = function () {
 };
 
 var mouseDown = function (e) {
-	if (e.which == 1) {
+	if (e.which === 1) {
 		getMousePosition(e);
 		mouse.isDown = true;
 		var max = 255;
@@ -55,7 +55,7 @@ var mouseDown = function (e) {
 };
 
 var mouseUp = function (e) {
-	if (e.which == 1) {
+	if (e.which === 1) {
 		mouse.isDown = false;
 		balls[balls.length - 1].velocity.x =
 			(balls[balls.length - 1].position.x - mouse.x) / 10;
@@ -78,7 +78,7 @@ function loop() {
 	//Clear window at the begining of every frame
 	ctx.clearRect(0, 0, width, height);
 	for (var i = 0; i < balls.length; i++) {
-		if (!mouse.isDown || i != balls.length - 1) {
+		if (!mouse.isDown || i !== balls.length - 1) {
 			//physics - calculating the aerodynamic forces to drag
 			// -0.5 * Cd * A * v^2 * rho
 			var fx =
@@ -177,7 +177,7 @@ function collisionWall(ball) {
 function collisionBall(b1) {
 	for (var i = 0; i < balls.length; i++) {
 		var b2 = balls[i];
-		if (b1.position.x != b2.position.x && b1.position.y != b2.position.y) {
+		if (b1.position.x !== b2.position.x && b1.position.y !== b2.position.y) {
 			//quick check for potential collisions using AABBs
 			if (
 				b1.position.x + b1.radius + b2.radius > b2.position.x &&
