@@ -16,7 +16,9 @@ function App() {
 			<section className="section">
 				<div className="inputs">
 					<div className="labels">
-						<label htmlFor="density">Density of Fluid: {density}</label>
+						<label htmlFor="density">
+							Density of Fluid: {density}kg/m<sup>3</sup>
+						</label>
 						<input
 							type="range"
 							id="density"
@@ -29,7 +31,7 @@ function App() {
 					</div>
 					<div className="labels">
 						<label htmlFor="gravity">
-							Acceleration due to gravity: {gravity}
+							Acceleration due to gravity: {gravity}g
 						</label>
 						<input
 							type="range"
@@ -50,12 +52,14 @@ function App() {
 							step="0.01"
 							max="1"
 							onChange={e => setFriction(parseInt(e.currentTarget.value))}
+							onBlur={e => setFriction(parseInt(e.currentTarget.value))}
+							onClick={e => setFriction(parseInt(e.currentTarget.value))}
 							value={friction}
 						/>
 					</div>
 				</div>
 				<div className="canvas">
-					<canvas id="canvas"></canvas>
+					<canvas id="canvas" width="800" height="550"></canvas>
 				</div>
 			</section>
 		</div>
