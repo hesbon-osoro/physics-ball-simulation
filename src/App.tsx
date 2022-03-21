@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 import './App.css';
+import Chart, { IData } from './Chart';
 
 function App() {
 	const [density, setDensity] = useState(1.22);
 	const [gravity, setGravity] = useState(1);
 	const [friction, setFriction] = useState(0.47);
+	const [toggleGraph, setToggleGraph] = useState(false);
 
+	let data: IData[] = [];
+
+	let heights = [
+		200, 0, 140, 0, 98, 0, 68.6, 0, 48, 0, 33.6, 0, 20, 0, 10, 0, 0,
+	];
+
+	for (let i = 0; i < heights.length; i++) {
+		data.push({
+			time: i,
+			height: heights[i],
+		});
+	}
 	return (
 		<div className="container-fluid">
 			<header className="header">
@@ -25,7 +39,7 @@ function App() {
 							min="0"
 							step="0.01"
 							max="1000"
-							onChange={e => setDensity(parseInt(e.currentTarget.value))}
+							onChange={e => setDensity(parseFloat(e.currentTarget.value))}
 							value={density}
 						/>
 					</div>
@@ -39,7 +53,7 @@ function App() {
 							min="0"
 							step="0.1"
 							max="10"
-							onChange={e => setGravity(parseInt(e.currentTarget.value))}
+							onChange={e => setGravity(parseFloat(e.currentTarget.value))}
 							value={gravity}
 						/>
 					</div>
@@ -51,9 +65,9 @@ function App() {
 							min="0"
 							step="0.01"
 							max="1"
-							onChange={e => setFriction(parseInt(e.currentTarget.value))}
-							onBlur={e => setFriction(parseInt(e.currentTarget.value))}
-							onClick={e => setFriction(parseInt(e.currentTarget.value))}
+							onChange={e => setFriction(parseFloat(e.currentTarget.value))}
+							onBlur={e => setFriction(parseFloat(e.currentTarget.value))}
+							onClick={e => setFriction(parseFloat(e.currentTarget.value))}
 							value={friction}
 						/>
 					</div>
@@ -61,7 +75,18 @@ function App() {
 				<div className="canvas">
 					<canvas id="canvas" width="800" height="550"></canvas>
 				</div>
+				{toggleGraph && (
+					<div className="graph">
+						<Chart data={data} />
+					</div>
+				)}
 			</section>
+			<button
+				className={toggleGraph ? 'btn hide-graph' : 'btn show-graph'}
+				onClick={() => setToggleGraph(!toggleGraph)}
+			>
+				{toggleGraph ? 'Hide' : 'Show'} Graph
+			</button>
 		</div>
 	);
 }
