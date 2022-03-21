@@ -66,4 +66,29 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: width 2s ease-in-out;
+}
+.graph {
+	width: 90%;
+	height: 90%;
+	margin: 0 auto;
+	display: grid;
+	place-items: center;
+	transition: width 2s ease-in-out;
+}
+.btn {
+	padding: 0.5em 1em;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.show-graph {
+	color: #fff;
+	background: rgb(8, 153, 8);
+	transition: width 1s ease-in-out;
+}
+.hide-graph {
+	color: #fff;
+	background: rgba(5, 79, 82, 0.459);
+	transition: width 1s ease-in-out;
 }
