@@ -69,6 +69,7 @@
 	transition: width 2s ease-in-out;
 }
 .graph {
+	position: relative;
 	width: 90%;
 	height: 90%;
 	margin: 0 auto;
@@ -83,11 +84,15 @@
 	cursor: pointer;
 }
 .show-graph {
+	position: relative;
+	margin: 0.5em auto;
 	color: #fff;
 	background: rgb(8, 153, 8);
 	transition: width 1s ease-in-out;
 }
 .hide-graph {
+	margin: 0.5em auto;
+	position: relative;
 	color: #fff;
 	background: rgba(5, 79, 82, 0.459);
 	transition: width 1s ease-in-out;
