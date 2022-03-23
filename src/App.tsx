@@ -7,19 +7,32 @@ function App() {
 	const [gravity, setGravity] = useState(1);
 	const [friction, setFriction] = useState(0.47);
 	const [toggleGraph, setToggleGraph] = useState(false);
+	const [showFrictionLessGraph, setShowFrictionLessGraph] = useState(false);
 
 	let data: IData[] = [];
+	let frictionLessData: IData[] = [];
 
 	let heights = [
 		200, 0, 140, 0, 98, 0, 68.6, 0, 48, 0, 33.6, 0, 20, 0, 10, 0, 0,
 	];
 
+	let frictionLessHeights = [
+		200, 0, 200, 0, 200, 0, 200, 0, 200, 0, 200, 0, 200, 0, 200, 0,
+	];
 	for (let i = 0; i < heights.length; i++) {
 		data.push({
 			time: i,
 			height: heights[i],
 		});
 	}
+
+	for (let i = 0; i < frictionLessHeights.length; i++) {
+		frictionLessData.push({
+			time: i,
+			height: frictionLessHeights[i],
+		});
+	}
+
 	return (
 		<div className="container-fluid">
 			<header className="header">
@@ -77,7 +90,15 @@ function App() {
 				</div>
 				{toggleGraph && (
 					<div className="graph">
-						<Chart data={data} />
+						<button
+							className={
+								showFrictionLessGraph ? 'btn hide-graph' : 'btn show-graph'
+							}
+							onClick={() => setShowFrictionLessGraph(!showFrictionLessGraph)}
+						>
+							{showFrictionLessGraph ? 'Hide' : 'Show'} Friction Less Graph
+						</button>
+						<Chart data={showFrictionLessGraph ? frictionLessData : data} />
 					</div>
 				)}
 			</section>
