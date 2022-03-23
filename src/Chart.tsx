@@ -7,6 +7,7 @@ import {
 	LineChart,
 	Line,
 	Tooltip,
+	Label,
 } from 'recharts';
 
 import './App.css';
@@ -25,13 +26,29 @@ const Chart = ({ data }) => {
 						<stop offset="75%" stopColor="#2451B7" stopOpacity={0} />
 					</linearGradient>
 				</defs>
-				<XAxis dataKey="time" axisLine={false} tickLine={false} />
+				<XAxis dataKey="time" axisLine={false} tickLine={false}>
+					<Label
+						style={{
+							textAnchor: 'middle',
+							fontSize: '130%',
+							position: 'absolute',
+							bottom: '-50px',
+						}}
+						value={'Time (s)'}
+					/>
+				</XAxis>
 				<YAxis
 					dataKey="height"
 					axisLine={false}
 					tickLine={false}
 					tickCount={8}
 					tickFormatter={number => `${number.toFixed(2)}`}
+					label={{
+						value: 'Height (ft.)',
+						fontSize: '130%',
+						angle: 270,
+						position: 'insideLeft',
+					}}
 				/>
 				<Tooltip
 					contentStyle={{ backgroundColor: '#8884d8', color: '#fff' }}
